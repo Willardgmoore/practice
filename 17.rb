@@ -94,30 +94,49 @@ def num_string?(num)
 end
 
 
-number = 1111  # Testing , supposed to be 1000
+number = 200  # Testing , supposed to be 1000
 result = ""
 
-idx = 0
-while idx < number + 1
+idx1 = 0
+while idx1 < number + 1
+  idx = idx1
   
   #Thousands
   if idx > 999
     result << num_string?(idx[0]) + "Thousand"
-    idx = idx % 1000
+    idx = idx % 1000 #Remove the counted number
   end
 
   #Hundreds
   if idx > 99
-    result << num_string?(idx[0]) + "Hundred"
-    idx = idx % 100
+    result << num_string?(idx[0]).to_s + "Hundred"
+    if idx % 100 != 0 
+      result << "And" #If the number goes on, must add "And"
+    end
+    idx = idx % 100 #Remove the counted number
+  end
+  
+  # 20 < idx < 100
+  if idx > 20
+    idx2 = idx
+    if idx % 10 != 0
+      idx2 = idx - (idx % 10)
+    end
+   result << num_string?(idx2)
+   
+    idx = idx % 10 #Remove the counted number
   end
 
-  #Tens and Ones 
+
+  # <20
   if idx > 0
-    result << "And" + num_string?(idx)
+#    puts idx
+    result << num_string?(idx)
   end
+  
+  result << " "
 
-  idx += 1
+  idx1 += 1
 end
 
 puts "result = #{result}"
