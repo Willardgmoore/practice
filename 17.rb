@@ -94,10 +94,10 @@ def num_string?(num)
 end
 
 
-number = 200  # Testing , supposed to be 1000
+number = 500  # Testing , supposed to be 1000
 result = ""
 
-idx1 = 0
+idx1 = 1
 while idx1 < number + 1
   idx = idx1
   
