@@ -74,7 +74,7 @@ def num_string?(num)
     return "Thirty"
   end
   if num == 40
-    return "Fourty"
+    return "Forty"
   end
   if num == 50
     return "Fifty"
@@ -94,22 +94,25 @@ def num_string?(num)
 end
 
 
-number = 200  # Testing , supposed to be 1000
-result = []
+number = 1000  # Testing , supposed to be 1000
+result = ""
 
-idx1 = 180
+idx1 = 1
 while idx1 < number + 1
   idx = idx1
   
+  
   #Thousands
   if idx > 999
-    result << num_string?(idx[0]) + "Thousand"
+    result << "#{num_string?((idx.to_s[0]).to_i)}Thousand"
     idx = idx % 1000 #Remove the counted number
   end
+  puts idx  # Testing
+puts  (idx.to_s[0]).to_i
 
   #Hundreds
   if idx > 99
-    result << num_string?(idx[0]).to_s + "Hundred"
+    result << "#{num_string?((idx.to_s[0]).to_i)}Hundred"
     if idx % 100 != 0 
       result << "And" #If the number goes on, must add "And"
     end
@@ -134,14 +137,15 @@ while idx1 < number + 1
     result << num_string?(idx)
   end
   
-  result << " "
+#  result << " "
 
   idx1 += 1
 end
 
 #puts "result = #{result}"
 
-
-result.each do
-  puts result
-end
+puts result
+puts result.length
+#result.each do
+#  puts result
+#end
