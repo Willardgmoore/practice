@@ -94,10 +94,10 @@ def num_string?(num)
 end
 
 
-number = 500  # Testing , supposed to be 1000
-result = ""
+number = 200  # Testing , supposed to be 1000
+result = []
 
-idx1 = 1
+idx1 = 180
 while idx1 < number + 1
   idx = idx1
   
@@ -122,7 +122,7 @@ while idx1 < number + 1
     if idx % 10 != 0
       idx2 = idx - (idx % 10)
     end
-   result << num_string?(idx2)
+    result << num_string?(idx2)
    
     idx = idx % 10 #Remove the counted number
   end
@@ -130,7 +130,7 @@ while idx1 < number + 1
 
   # <20
   if idx > 0
-#    puts idx
+    #    puts idx
     result << num_string?(idx)
   end
   
@@ -139,5 +139,9 @@ while idx1 < number + 1
   idx1 += 1
 end
 
-puts "result = #{result}"
+#puts "result = #{result}"
 
+
+result.each do
+  puts result
+end
