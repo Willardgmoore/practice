@@ -1,28 +1,29 @@
-#Rock Paper Scissors#
-puts "============================"
-puts "Rock,Paper,Scissors...Throw!"
-puts "============================"
+puts "=============================="
+puts "Rock, Paper, Scissors...Throw!"
+puts "=============================="
+puts
 $wins = 0
 $losses = 0
 $draw = 0
 
 def game
-  rps_array = ["rock","paper","scissors"]
+  rps_array = ["Rock","Paper","Scissors"]
   player_1 = ""
   player_2 = (rps_array.sample).to_s
 
   until rps_array.include?(player_1)
-    puts "Make your selection: rock, paper or scissors"
-    player_1 = gets.chomp.downcase
+    puts "#{rps_array[0]}, #{rps_array[1]} or #{rps_array[2]}?"
+    player_1 = gets.chomp.capitalize
 
-    if player_1 == "r"		## quick letter mode
-      player_1 = "rock"
-    elsif player_1 == "p"
-      player_1 = "paper"
-    elsif player_1 == "s"
-      player_1 = "scissors"
+    if player_1 == "R"		## quick letter mode
+      player_1 = "Rock"
+    elsif player_1 == "P"
+      player_1 = "Paper"
+    elsif player_1 == "S"
+      player_1 = "Scissors"
     end
   end
+  puts
   puts player_1 +" vs "+ player_2
 
   if player_1 == player_2     # Win/Lose/Draw Algorythm
