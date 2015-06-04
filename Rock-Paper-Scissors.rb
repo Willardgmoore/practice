@@ -2,7 +2,6 @@
 puts "============================"
 puts "Rock,Paper,Scissors...Throw!"
 puts "============================"
-play_game = "Y"
 $wins = 0
 $losses = 0
 $draw = 0
@@ -38,18 +37,33 @@ def game
     puts "You lose!"
     $losses+=1
   end
-end
-
-while play_game == "Y"
-  game
-
   puts "Wins: #{$wins} Losses:#{$losses} Draw:#{$draw}"
-  puts "Would you like to play again? Y/N"
-  play_game = gets.chomp.upcase
+  puts
+
+again?
 end
+
+def again?
+    # Play again function  
+  puts "Play Again? Y/N"
+  play_game = gets.chomp.upcase
 
   if play_game == "N"
-    puts "See you later!"
-    puts "Final Score: #{$wins} out of #{($wins + $losses)}, #{($wins / ($wins + $losses))}"
+
+    if $wins > $losses # End announcement
+      $outcome = "Won!"
+    elsif $losses > $wins
+      $outcome = "Lost."
+    else
+      $outcome = "quitter!"
+      puts "We were barely getting started!"
+    end
+    puts "You #{$outcome} #{$wins} to #{($wins + $losses)}."
+
+   # puts "Final Score: #{$wins} to #{($wins + $losses)}, #{($wins / ($wins + $losses))}"
+  else #play_game == "Y"
+    game
   end
 end
+
+game
