@@ -5,6 +5,7 @@ puts "============================"
 play_game = "Y"
 $wins = 0
 $losses = 0
+$draw = 0
 def game
   rps_array = ["rock","paper","scissors"]
   player_1 = ""
@@ -23,6 +24,7 @@ def game
   puts player_1 +" vs "+ player_2
   if player_1 == player_2
     puts "Draw"
+    $draw+=1
   elsif (player_1 == "rock" and player_2 == "scissors") ||
     (player_1 == "paper" and player_2 == "rock") || 
     (player_1 == "scissors" and player_2 == "paper")
@@ -36,10 +38,11 @@ end
 while play_game == "Y"
   game
 
-  puts "Wins: #{$wins} Losses:#{$losses}"
+  puts "Wins: #{$wins} Losses:#{$losses} Draw:#{$draw}"
   puts "Would you like to play again? Y/N"
   play_game = gets.chomp.upcase
   if play_game == "N"
     puts "See you later!"
+    puts "Final Score: #{$wins} out of #{($wins + $losses)}, #{($wins / ($wins + $losses))}"
   end
 end
