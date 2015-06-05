@@ -5,6 +5,7 @@ puts
 $wins = 0
 $losses = 0
 $draw = 0
+$continuous = "off"
 
 def game
   rps_array = ["Rock","Paper","Scissors"]
@@ -21,13 +22,16 @@ def game
       player_1 = "Paper"
     elsif player_1 == "S"
       player_1 = "Scissors"
+    elsif player_1 == "Help"
+      help
+      game
     end
   end
   puts
   puts player_1 +" vs "+ player_2
 
   if player_1 == player_2     # Win/Lose/Draw Algorythm
-    puts "Draw"
+    puts "Draw."
     $draw+=1
   elsif (player_1 == "rock" and player_2 == "scissors") ||
     (player_1 == "paper" and player_2 == "rock") || 
@@ -35,22 +39,25 @@ def game
     puts "You win!"
     $wins+=1
   else
-    puts "You lose!"
+    puts "You lose."
     $losses+=1
   end
   puts "Wins: #{$wins} Losses:#{$losses} Draw:#{$draw}"
   puts
 
-again?
+  if $continuous == "on"    # Continuous feature
+    game
+  else
+    again?
+  end
 end
 
 def again?
-    # Play again function  
-  puts "Play Again? Y/N"
+  # Play again function  
+  puts 'Play Again? "Y"/"N"'
   play_game = gets.chomp.upcase
 
   if play_game == "N"
-
     if $wins > $losses # End announcement
       $outcome = "Won!"
     elsif $losses > $wins
@@ -60,11 +67,27 @@ def again?
       puts "We were barely getting started!"
     end
     puts "You #{$outcome} #{$wins} to #{($wins + $losses)}."
-
-   # puts "Final Score: #{$wins} to #{($wins + $losses)}, #{($wins / ($wins + $losses))}"
-  else #play_game == "Y"
+  elsif play_game == "JUST PLAY"
+    $continuous = "on"
+    game
+  elsif play_game == "HELP"
+    help
+    again?
+  else
     game
   end
+end
+
+def help
+puts "If in a countinuous game, type done to exit"
+puts 'To enter a continuous game, type "just play"'
+puts "When asked to play again."
+puts 
+puts "You can type just the first letter of the object "
+puts "you choose for each round by either typing the name "
+puts "out or just the first letter of the object"
+puts "r instead of rock, and so on."
+
 end
 
 game
