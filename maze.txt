@@ -1,0 +1,13 @@
+Set up game
+	Set up player: lives, name, maze_size
+	generate maze
+	Start at maze 0 4
+	
+define movement
+	forward, back, left, right
+	
+define cheat
+	puts "enter code:"
+	code = gets.chomp
+	
+	
