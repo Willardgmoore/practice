@@ -60,64 +60,77 @@ class Dragon
   # => methods internal to the object. (You can feed your
   # => dragon, but you can't ask him whether he's hungry.)
 
-def hungry?
-  # => Method names can end with "?".
-  # => Usually, we do this only if the methods
-  # =>  returns true or false, like this:
-  @stuff_in_belly <= 2
-end
+  def hungry?
+    # => Method names can end with "?".
+    # => Usually, we do this only if the methods
+    # =>  returns true or false, like this:
+    @stuff_in_belly <= 2
+  end
 
-def poopy?
-  @stuff_in_intestine >= 8
-end
+  def poopy?
+    @stuff_in_intestine >= 8
+  end
 
-def passage_of_time
-  if @stuff_in_belly > 0
-    # => Move food from belly to intestine.
-    @stuff_in_belly     -= 1
-    @stuff_in_intestine += 1
-  else  #Our dragon is starving!
-    if @asleep
-      @asleep = false
-      puts 'He wakes up suddenly!'
+  def passage_of_time
+    if @stuff_in_belly > 0
+      # => Move food from belly to intestine.
+      @stuff_in_belly     -= 1
+      @stuff_in_intestine += 1
+    else  #Our dragon is starving!
+      if @asleep
+        @asleep = false
+        puts 'He wakes up suddenly!'
+      end
+      puts "#{@name} is starving!  In desperation, he ate YOU!"
+      exit  # => This quits the program.
     end
-    puts "#{@name} is starving!  In desperation, he ate YOU!"
-    exit  # => This quits the program.
-  end
 
-  if @stuff_in_intestine >= 10
-    @stuff_in_intestine = 0
-    puts "Whoops!  #{@name} had an accident..."
-  end
-
-  if hungry?
-    if @asleep
-      @asleep = false
-      puts 'He wakes up suddenly!'
+    if @stuff_in_intestine >= 10
+      @stuff_in_intestine = 0
+      puts "Whoops!  #{@name} had an accident..."
     end
-    puts "#{@name}'s stomach grumbles..."
-  end
 
-  if poopy?
-    if @asleep
-      @asleep = false
-      puts 'He wakes up suddenly!'
+    if hungry?
+      if @asleep
+        @asleep = false
+        puts 'He wakes up suddenly!'
+      end
+      puts "#{@name}'s stomach grumbles..."
     end
-    puts "#{@name}does the potty dance.."
+
+    if poopy?
+      if @asleep
+        @asleep = false
+        puts 'He wakes up suddenly!'
+      end
+      puts "#{@name}does the potty dance.."
+    end
   end
-end
 
 
 end
 
-pet = Dragon.new 'Norbert'
+class Game
+  def initialize
+    introduce_game
+    pet = Dragon.new "#{$name}"
+  end
 
-pet.feed
-pet.toss
-pet.walk
-pet.put_to_bed
-pet.rock
-pet.put_to_bed
-pet.put_to_bed
-pet.put_to_bed
-pet.put_to_bed
+  def introduce_game
+    puts "Congraduations, It's a baby dragon."
+    puts "What will you call him?"
+    $name = gets.chomp.capitalize
+    puts
+    puts "#{$name} is a good name."
+    puts "If you ever have any questions just say 'help'."
+    puts "I'll be right here for you. Best of luck!"
+    puts
+  end
+
+  def input
+
+  end
+
+end
+
+Game.new
