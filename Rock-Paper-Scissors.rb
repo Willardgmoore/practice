@@ -36,9 +36,9 @@ def game
   if player_1 == player_2     # Win/Lose/Draw Algorythm
     puts "Draw."
     $draw+=1
-  elsif (player_1 == "rock" and player_2 == "scissors") ||
-    (player_1 == "paper" and player_2 == "rock") || 
-    (player_1 == "scissors" and player_2 == "paper")
+  elsif (player_1 == "Rock" and player_2 == "Scissors") ||
+    (player_1 == "Paper" and player_2 == "Rock") || 
+    (player_1 == "Scissors" and player_2 == "Paper")
     puts "You win!"
     $wins+=1
   else
@@ -56,10 +56,12 @@ def game
 end
 
 def again?
+  out_of
   # Play again function  
   puts 'Play Again? "Y"/"N"'
   play_game = gets.chomp.upcase
 
+  puts
   if play_game == "N"   # Win or Lose
     end_game
   elsif play_game == "Y"
@@ -84,10 +86,10 @@ def help
   puts "you choose for each round by either typing the name "
   puts "out or just the first letter of the object"
   puts "r instead of rock, and so on."
+  puts
 end
 
 def end_game
-  puts "1"
   if $wins > $losses # End announcement
     $outcome = "Won!"
   elsif $losses > $wins
@@ -98,6 +100,17 @@ def end_game
   end
   puts "You #{$outcome} #{$wins} to #{($wins + $losses)}."
   exit
+end
+
+def out_of    # Antagonize the player to keep playing
+  if $losses > $wins
+    puts "Do you want to try #{$losses +1} out of #{($losses*2)+1}"
+  elsif $wins > $losses
+    puts "Let me try for #{$wins +1} out of #{($wins*2)+1}"
+  elsif $wins = $losses
+    puts "Please! We have to break the tie,"
+    puts "Just 1 more!"
+  end
 end
 
 game
