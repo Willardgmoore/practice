@@ -25,6 +25,9 @@ def game
     elsif player_1 == "Help"
       help
       game
+    elsif player_1 == "Done"
+      $continuous = "off"
+      again?
     end
   end
   puts
@@ -57,16 +60,10 @@ def again?
   puts 'Play Again? "Y"/"N"'
   play_game = gets.chomp.upcase
 
-  if play_game == "N"
-    if $wins > $losses # End announcement
-      $outcome = "Won!"
-    elsif $losses > $wins
-      $outcome = "Lost."
-    else
-      $outcome = "quitter!"
-      puts "We were barely getting started!"
-    end
-    puts "You #{$outcome} #{$wins} to #{($wins + $losses)}."
+  if play_game == "N"   # Win or Lose
+    end_game
+  elsif play_game == "Y"
+    game 
   elsif play_game == "JUST PLAY"
     $continuous = "on"
     game
@@ -74,20 +71,33 @@ def again?
     help
     again?
   else
-    game
+    again?
   end
 end
 
 def help
-puts "If in a countinuous game, type done to exit"
-puts 'To enter a continuous game, type "just play"'
-puts "When asked to play again."
-puts 
-puts "You can type just the first letter of the object "
-puts "you choose for each round by either typing the name "
-puts "out or just the first letter of the object"
-puts "r instead of rock, and so on."
+  puts "If in a countinuous game, type done to exit"
+  puts 'To enter a continuous game, type "just play"'
+  puts "When asked to play again."
+  puts 
+  puts "You can type just the first letter of the object "
+  puts "you choose for each round by either typing the name "
+  puts "out or just the first letter of the object"
+  puts "r instead of rock, and so on."
+end
 
+def end_game
+  puts "1"
+  if $wins > $losses # End announcement
+    $outcome = "Won!"
+  elsif $losses > $wins
+    $outcome = "Lost."
+  else
+    $outcome = "quitter!"
+    puts "We were barely getting started!"
+  end
+  puts "You #{$outcome} #{$wins} to #{($wins + $losses)}."
+  exit
 end
 
 game
