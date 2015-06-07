@@ -56,13 +56,25 @@ class Dragon
   end
 
   def bored
-    filled_time = ["killed a cat", "burned down a nearby house", "sharpened his nails on the side of your car"]
-    2.times do
-      passage_of_time
+    filled_time = ["killed a cat", 
+      "burned down a nearby house",
+      "sharpened his nails on the side of your car",
+      "set fire to the rug",
+      "ate a pair of your shoes",
+      "broke the sink",
+      "got into the trash",
+      "flew into the ceiling fan",
+      "ate your food off of the counter",
+      "tore up some of your clothes to make a small bed",
+      "bit the mailman",
+      "dug a hole in the backyard."]
+      2.times do
+        passage_of_time
+      end
+      puts "#{@name} is bored. He is a high maintance pet."
+      puts "#{@name} #{filled_time[rand(filled_time.length)]}."
+      puts
     end
-    puts "#{@name} is bored. He is a high maintance pet."
-    puts "#{@name} #{filled_time[rand(filled_time.length)]}."
-    puts
   end
 
   private
@@ -116,67 +128,69 @@ class Dragon
       puts "#{@name} does the potty dance.."
     end
   end
-
-
+end
 end
 
 class Game
-  def initialize
-    introduce_game
-    @pet = Dragon.new "#{$name}"
-    game
-  end
+def initialize
+  introduce_game
+  @pet = Dragon.new "#{$name}"
+  game
+end
 
-  def introduce_game
-    puts "Congraduations, It's a baby dragon."
-    puts "What will you call him?"
-    $name = gets.chomp.capitalize
-    puts
-    puts "#{$name} is a perfect name."
-    puts "If you ever have any questions just say 'help'."
-    puts "I'll be right here for you. Best of luck!"
-    puts
-  end
+def introduce_game
+  puts "Congraduations, It's a baby dragon."
+  puts "What will you call him?"
+  $name = gets.chomp.capitalize
+  puts
+  puts "#{$name} is a perfect name."
+  puts "If you ever have any questions just say 'help'."
+  puts "I'll be right here for you. Best of luck!"
+  puts
+end
 
-  def input(string)
-    if string == "put to bed"
-      @pet.put_to_bed
-    elsif string == "walk"
-      @pet.walk
-    elsif string == "feed"
-      @pet.feed
-    elsif string == "toss"
-      @pet.toss
-    elsif string == "rock"
-      @pet.rock
-    elsif string == "help"
-      help
-    elsif string == "exit"
-      puts "Good Bye!"
-      puts "#{$name} will miss you!"
-      exit
-    else 
-      puts "Unrecognized input,"
-      puts "Try 'help' if you are stuck"
-      puts
-      @pet.bored
-    end
-  end
-
-  def help
-    puts "You can type any of the following:"
-    puts "Walk, Feed, Toss, Put to bed, Rock, Help or Exit"
+def input(string)
+  if string == "put to bed"
+    @pet.put_to_bed
+  elsif string == "walk"
+    @pet.walk
+  elsif string == "feed"
+    @pet.feed
+  elsif string == "toss"
+    @pet.toss
+  elsif string == "rock"
+    @pet.rock
+  elsif string == "help"
+    help
+  elsif string == "exit"
+    puts "Good Bye!"
+    puts "#{$name} will miss you!"
+    exit
+  else 
+    puts "Unrecognized input,"
+    puts "Try 'help' if you are stuck"
     puts
     @pet.bored
   end
+end
 
-  def game
-    while true
-      user_input = gets.chomp.downcase
-      input(user_input)
-      puts
-    end
+def help
+  puts "You can type any of the following:"
+  puts "Walk, Feed, Toss, Put to bed, Rock, Help or Exit"
+  puts
+  @pet.bored
+end
+
+def game
+  while true
+    user_input = gets.chomp.downcase
+
+
+
+    input(user_input)
+    puts
   end
+end
 end
 
 Game.new
